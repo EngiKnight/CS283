@@ -15,7 +15,8 @@ I have installed my virtual machine, tested it, feel comfortable using it, and v
 - [ ] NO - Not Yet
       
 Please provide a link to the repository you are using for this class.
-    
+
+    https://github.com/EngiKnight/CS283
     
 Briefly describe what you want to get out of this class.
   
