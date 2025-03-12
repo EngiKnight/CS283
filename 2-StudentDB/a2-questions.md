@@ -67,7 +67,7 @@ Please answer the following questions and submit in your repo for the second ass
     - **(a)** Please explain why the file size reported by the `ls` command was 128 bytes after adding student with ID=1, 256 after adding student with ID=3, and 4160 after adding the student with ID=64?
 
         > **ANSWER:**  
-        Each student record is stored at `(id * 64)`, plus 64 bytes for the record itself, which sets the file’s “end” position. `ls` reports this logical size, so when you add ID=64, the file end moves to `64*64 + 64 = 4160`.
+        Each student record is stored at `(id * 64)`, plus 64 bytes for the record itself, which sets the file’s end position. `ls` reports this logical size, so when you add ID=64, the file end moves to `64*64 + 64 = 4160`.
 
     - **(b)** Why did the total storage used on the disk remain unchanged when we added the student with ID=1, ID=3, and ID=63, but increased from 4K to 8K when we added the student with ID=64?
 
@@ -77,4 +77,4 @@ Please answer the following questions and submit in your repo for the second ass
     - **(c)** We see from above adding a student with a very large student ID (ID=99999) increased the file size to 6400000 as shown by `ls` but the raw storage only increased to 12K as reported by `du`.  Can provide some insight into why this happened?
 
         > **ANSWER:**  
-        Large IDs create a “hole” in the file at offset `(99999 * 64)`, which doesn’t consume real disk blocks until data is actually written there. `ls` shows the logical file size, while `du` shows only the actual blocks allocated. Linux filesystems handle sparse files efficiently, so the disk usage is still small.
+        Large IDs create a hole in the file at offset `(99999 * 64)`, which doesn’t consume real disk blocks until data is actually written there. `ls` shows the logical file size, while `du` shows only the actual blocks allocated. Linux filesystems handle sparse files efficiently, so the disk usage is still small.
