@@ -6,7 +6,7 @@
 #define ARG_MAX 256
 #define CMD_MAX 8
 #define SH_CMD_MAX 1024
-#define SH_PROMPT "dsh3> "
+#define SH_PROMPT "dsh4> "
 #define EXIT_CMD "exit"
 #define CMD_ARGV_MAX 64
 typedef struct {
