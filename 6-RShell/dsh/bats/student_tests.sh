@@ -1,14 +1,22 @@
 #!/usr/bin/env bats
-
-# File: student_tests.sh
-# 
-# Create your unit tests suit in this file
-
-@test "Example: check ls runs without errors" {
-    run ./dsh <<EOF                
-ls
-EOF
-
-    # Assertions
-    [ "$status" -eq 0 ]
+setup() {
+  ./dsh -s -p 5678 &
+  SERVER_PID=$!
+  sleep 1
+}
+teardown() {
+  kill $SERVER_PID 2>/dev/null || true
+}
+@test "remote shell echo command" {
+  run bash -c 'printf "echo hello\nexit\n" | ./dsh -c -p 5678'
+  [ "$status" -eq 0 ]
+  [[ "$output" =~ "hello" ]]
+}
+@test "remote shell exit command" {
+  run bash -c 'printf "exit\n" | ./dsh -c -p 5678'
+  [ "$status" -eq 0 ]
+}
+@test "remote shell stop-server" {
+  run bash -c 'printf "stop-server\n" | ./dsh -c -p 5678'
+  [ "$status" -eq 0 ]
 }
